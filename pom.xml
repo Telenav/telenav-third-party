@@ -14,7 +14,7 @@
 
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-merged</artifactId>
-    <version>1.5.1-SNAPSHOT</version>
+    <version>1.5.1</version>
 
     <packaging>pom</packaging>
 
@@ -22,7 +22,7 @@
 
         <!--  -->
 
-        <kivakit.merged.version>1.5.1-SNAPSHOT</kivakit.merged.version>
+        <kivakit.merged.version>1.5.1</kivakit.merged.version>
 
         <java.version>11</java.version>
 

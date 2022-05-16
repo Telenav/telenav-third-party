@@ -18,5 +18,6 @@ setup.properties
 **/*.class
 **/*.hprof
 **/dependency-reduced-pom.xml
+dependency-reduced-pom.xml
 **/venv/
 /venv/**
