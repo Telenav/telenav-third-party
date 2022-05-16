@@ -12,7 +12,30 @@ This module contains JAR files that have been merged to eliminate split packages
 
 [//]: # (start-user-text)
 
+### Releasing to Maven Central
 
+It should rarely be necessary to deploy the projects in this repository
+to Maven Central, but when it becomes necessary to push a change, the
+following command will build the projects and copy the result to a 
+staging repository on OSSRH:
+
+```
+mvn -p release clean deploy
+```
+
+> *You must have the PGP key to sign the release or it will be rejected.*  
+> 
+> Contact Jonathan Locke (jon@thanlocke.com, jonathanl@telenav.com) 
+> for the PGP key.
+
+The OSSRH staging repository is at:
+
+```
+https://s01.oss.sonatype.org/
+```
+
+> Contact Jonathan Locke (jon@thanlocke.com, jonathanl@telenav.com) 
+> for the username and password.
 
 [//]: # (end-user-text)
 
