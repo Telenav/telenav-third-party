@@ -20,12 +20,11 @@
 
     <properties>
 
-        <!--  -->
-
         <kivakit.merged.version>1.5.1</kivakit.merged.version>
 
         <java.version>11</java.version>
 
+        <maven.version>3.8.1</maven.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
@@ -112,6 +111,7 @@
             <id>release</id>
             <build>
                 <plugins>
+
                     <!-- Source JAR -->
 
                     <plugin>
