@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-merged</artifactId>
-        <version>1.5.1</version>
+        <version>1.5.2</version>
     </parent>
 
     <artifactId>kivakit-merged-protostuff</artifactId>
@@ -70,22 +70,24 @@
                             <finalName>kivakit-merged-protostuff-${kivakit.merged.version}</finalName>
                             <minimizeJar>false</minimizeJar>
                             <createDependencyReducedPom>true</createDependencyReducedPom>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                             <artifactSet>
                                 <includes>
                                     <include>*:*</include>
                                 </includes>
                             </artifactSet>
-                            <relocations>
-                                <relocation>
-                                  <pattern>io.netty</pattern>
-                                  <shadedPattern>kivakit.merged.protostuff.io.netty</shadedPattern>
-                                </relocation>
-                            </relocations>
                             <transformers>
                                 <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                 <manifestEntries>
-                                     <Automatic-Module-Name>kivakit.merged.protostuff</Automatic-Module-Name>
-                                 </manifestEntries>
+                                     <manifestEntries>
+                                         <Automatic-Module-Name>kivakit.merged.protostuff</Automatic-Module-Name>
+                                     </manifestEntries>
                                 </transformer>
                             </transformers>
                         </configuration>

@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-merged</artifactId>
-        <version>1.5.1</version>
+        <version>1.5.2</version>
     </parent>
 
     <artifactId>kivakit-merged-zookeeper</artifactId>
@@ -87,6 +87,16 @@
                                     </excludes>
                                 </filter>
                             </filters>
+                            <relocations>
+                                <relocation>
+                                  <pattern>org.apache.zookeeper</pattern>
+                                  <shadedPattern>kivakit.merged.zookeeper</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                  <pattern>org.apache.jute</pattern>
+                                  <shadedPattern>kivakit.merged.zookeeper</shadedPattern>
+                                </relocation>
+                            </relocations>
                             <transformers>
                                 <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>

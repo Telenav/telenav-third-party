@@ -14,13 +14,13 @@
 
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit-merged</artifactId>
-    <version>1.5.1</version>
+    <version>1.5.2</version>
 
     <packaging>pom</packaging>
 
     <properties>
 
-        <kivakit.merged.version>1.5.1</kivakit.merged.version>
+        <kivakit.merged.version>1.5.2</kivakit.merged.version>
 
         <java.version>11</java.version>
 

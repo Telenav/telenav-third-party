@@ -3,7 +3,7 @@
   <parent>
     <artifactId>kivakit-merged</artifactId>
     <groupId>com.telenav.kivakit</groupId>
-    <version>1.5.1</version>
+    <version>1.5.2</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>kivakit-merged-prometheus</artifactId>
@@ -22,6 +22,14 @@
               <finalName>kivakit-merged-prometheus-${kivakit.merged.version}</finalName>
               <minimizeJar>false</minimizeJar>
               <createDependencyReducedPom>true</createDependencyReducedPom>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/**</exclude>
+                  </excludes>
+                </filter>
+              </filters>
               <artifactSet>
                 <includes>
                   <include>*:*</include>
@@ -34,6 +42,12 @@
                   </manifestEntries>
                 </transformer>
               </transformers>
+              <relocations>
+                <relocation>
+                  <pattern>io.prometheus</pattern>
+                  <shadedPattern>kivakit.merged.prometheus</shadedPattern>
+                </relocation>
+              </relocations>
             </configuration>
           </execution>
         </executions>
