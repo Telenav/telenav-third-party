@@ -10,40 +10,291 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>kivakit-merged</name>
+    <name>Merged Parent</name>
 
-    <groupId>com.telenav.kivakit</groupId>
-    <artifactId>kivakit-merged</artifactId>
-    <version>1.5.2</version>
+    <groupId>com.telenav.thirdparty</groupId>
+    <artifactId>merged-parent</artifactId>
+    <version>1.5.3</version>
 
     <packaging>pom</packaging>
 
     <properties>
 
-        <kivakit.merged.version>1.5.2</kivakit.merged.version>
-
+        <automodule-inject.version>1.1</automodule-inject.version>
+        <kivakit.merged.version>1.5.3</kivakit.merged.version>
         <java.version>11</java.version>
+        <maven.version>3.8.5</maven.version>
 
-        <maven.version>3.8.1</maven.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-        <maven-nexus-staging-plugin.version>1.6.7</maven-nexus-staging-plugin.version>
-
-        <netty.version>4.1.66.Final</netty.version>
+        <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+        <maven-nexus-staging-plugin.version>1.6.13</maven-nexus-staging-plugin.version>
+        <maven-shade-plugin.version>3.4.0</maven-shade-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <netty.version>4.1.82.Final</netty.version>
 
     </properties>
 
+    <modules>
+
+        <module>grpc</module>
+        <module>prometheus</module>
+        <module>protostuff</module>
+        <module>zookeeper</module>
+
+    </modules>
+
     <!-- Project -->
 
-    <description>The kivakit-merged project contains JAR files that have been re-built for modular Java.</description>
+    <description>The merged-parent project contains JAR files that have been re-built for modular Java.</description>
     <url>https://www.kivakit.org</url>
     <inceptionYear>2011</inceptionYear>
     <organization>
         <name>Telenav</name>
         <url>https://www.telenav.com</url>
     </organization>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+
+                    <!-- Source JAR -->
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-source-jar</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Javadoc JAR -->
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadoc-jar</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Sign Artifacts -->
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+
+                    <!-- OSSRH -->
+
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <extensions>true</extensions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.mastfrog</groupId>
+                    <artifactId>automodule-inject</artifactId>
+                    <version>${automodule-inject.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                    <configuration>
+                        <show>protected</show>
+                        <source>8</source>
+                        <encoding>utf-8</encoding>
+                        <sourcepath>src/main/java</sourcepath>
+                        <failOnError>true</failOnError>
+                        <detectJavaApiLink>false</detectJavaApiLink>
+                        <doclint>none</doclint>
+                        <nohelp>true</nohelp>
+                        <additionalOptions>-notimestamp</additionalOptions>
+                        <destDir>target/attached-javadocs</destDir>
+                        <sourceFileIncludes>
+                            <sourceFileInclude>**/*.java</sourceFileInclude>
+                        </sourceFileIncludes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven-gpg-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${maven-shade-plugin.version}</version>
+                    <extensions>true</extensions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${maven-enforcer-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>${maven-nexus-staging-plugin.version}</version>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                        <artifactSet>
+                            <includes>
+                                <include>*:*</include>
+                            </includes>
+                        </artifactSet>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>${project.artifactId}-${kivakit.merged.version}</finalName>
+                    <minimizeJar>false</minimizeJar>
+                    <createDependencyReducedPom>true</createDependencyReducedPom>
+                    <transformers>
+                        <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <manifestEntries>
+                                <Automatic-Module-Name>${autoAutoModuleName}</Automatic-Module-Name>
+                            </manifestEntries>
+                        </transformer>
+                    </transformers>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <!-- Sets a project-property (settable, but by default,
+                autoAutoModuleName which can then be used to generate a
+                manifest entry in the shade plugin or maven-jar-plugin.  In
+                particular, this plugin ensures that the result is a valid
+                Java identifier.
+
+                This allows us to have most of the configuration of the
+                shade plugin in this superpom, instead of near-duplicate
+                stanzas in every pom..
+                -->
+                <groupId>com.mastfrog</groupId>
+                <artifactId>automodule-inject</artifactId>
+                <configuration>
+                    <includeGroupId>false</includeGroupId>
+                    <!-- will give us the original names, such as kivakit.merged.gprc -->
+                    <prefix>kivakit.merged.</prefix>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>automodule-inject</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Dependencies -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <configuration>
+                            <rules>
+                                <dependencyConvergence/>
+                                <requireMavenVersion>
+                                    <version>[${maven.version},)</version>
+                                    <message>Build requires Maven version ${maven.version}.</message>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Compiling -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <release>${java.version}</release>
+                    <compilerArgs>
+                        <compilerArg>-Xlint:unchecked</compilerArg>
+                        <compilerArg>-Xlint:-requires-transitive-automatic</compilerArg>
+                        <compilerArg>-Xlint:deprecation</compilerArg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <!-- Licensing -->
 
@@ -74,6 +325,18 @@
         </developer>
 
         <developer>
+            <id>timboudreau</id>
+            <name>Tim Boudreau (Luo Shibo)</name>
+            <email>tim@timboudreau.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>lead</role>
+                <role>administrator</role>
+            </roles>
+        </developer>
+
+        <developer>
             <id>haifeng</id>
             <name>Haifeng Zhu</name>
             <email>hfzhu@telenav.com</email>
@@ -91,9 +354,9 @@
 
     <scm>
 
-        <connection>scm:git:https://Telenav/kivakit.git</connection>
-        <developerConnection>scm:git:https://Telenav/kivakit.git</developerConnection>
-        <url>https://Telenav/kivakit.git</url>
+        <connection>scm:git:https://github.com/Telenav/kivakit-merged.git</connection>
+        <developerConnection>scm:git:https://github.com/Telenav/kivakit-merged.git</developerConnection>
+        <url>https://github.com/Telenav/kivakit-merged.git</url>
 
     </scm>
 
@@ -102,160 +365,8 @@
     <issueManagement>
 
         <system>GitHub</system>
-        <url>https://github.com/Telenav/kivakit/issues</url>
+        <url>https://github.com/Telenav/kivakit-merged/issues</url>
 
     </issueManagement>
-
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-
-                    <!-- Source JAR -->
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>${maven-source-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>attach-source-jar</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!-- Javadoc JAR -->
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${maven-javadoc-plugin.version}</version>
-                        <configuration>
-                            <show>protected</show>
-                            <source>11</source>
-                            <sourcepath>src/main/java</sourcepath>
-                            <failOnError>false</failOnError>
-                            <detectJavaApiLink>false</detectJavaApiLink>
-                            <doclint>none</doclint>
-                            <nohelp>true</nohelp>
-                            <additionalOptions>-notimestamp --show-module-contents all --show-packages all --show-types private</additionalOptions>
-                            <destDir>target/attached-javadocs</destDir>
-                            <sourceFileIncludes>
-                                <sourceFileInclude>**/*.java</sourceFileInclude>
-                            </sourceFileIncludes>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>attach-javadoc-jar</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!-- Sign Artifacts -->
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${maven-gpg-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <configuration>
-                                    <gpgArguments>
-                                        <arg>--pinentry-mode</arg>
-                                        <arg>loopback</arg>
-                                    </gpgArguments>
-                                </configuration>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-
-                    <!-- OSSRH -->
-
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${maven-nexus-staging-plugin.version}</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
-    <build>
-
-        <plugins>
-
-            <!-- Dependencies -->
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <id>enforce</id>
-                        <configuration>
-                            <rules>
-                                <dependencyConvergence/>
-                                <requireMavenVersion>
-                                    <version>[${maven.version},)</version>
-                                    <message>Build requires Maven version ${maven.version}.</message>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Compiling -->
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <release>${java.version}</release>
-                    <compilerArgs>
-                        <compilerArg>-Xlint:unchecked</compilerArg>
-                        <compilerArg>-Xlint:-requires-transitive-automatic</compilerArg>
-                        <compilerArg>-Xlint:deprecation</compilerArg>
-                    </compilerArgs>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    <modules>
-
-        <module>grpc</module>
-        <module>prometheus</module>
-        <module>protostuff</module>
-        <module>zookeeper</module>
-
-    </modules>
 
 </project>

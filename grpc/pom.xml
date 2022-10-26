@@ -10,124 +10,122 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-merged</artifactId>
-        <version>1.5.2</version>
+        <groupId>com.telenav.thirdparty</groupId>
+        <artifactId>merged-parent</artifactId>
+        <version>1.5.3</version>
     </parent>
 
-    <artifactId>kivakit-merged-grpc</artifactId>
-
-    <packaging>jar</packaging>
+    <artifactId>grpc</artifactId>
 
     <!--
 
-        This project is here solely to build the grpc project into a single JAR to resolve the split package
-        problem between grpc-api and grpc-context. The JAR should be built and then manually installed in the
-        kivakit-merged project in the lib folder.
+       This project is here solely to build the grpc project into a single JAR to resolve the split package
+       problem between grpc-api and grpc-context. The JAR should be built and then manually installed in the
+       kivakit-merged project in the lib folder.
 
-     -->
+    -->
 
     <properties>
 
-        <grpc.version>1.41.0</grpc.version>
+        <grpc.version>1.50.0</grpc.version>
 
     </properties>
 
     <dependencies>
 
         <dependency>
-			<groupId>io.netty</groupId>
-			<artifactId>netty-all</artifactId>
-			<version>${netty.version}</version>
-		</dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
         <dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-protobuf</artifactId>
-			<version>${grpc.version}</version>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-protobuf</artifactId>
+            <version>${grpc.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-		</dependency>
+        </dependency>
         <dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-protobuf-lite</artifactId>
-			<version>${grpc.version}</version>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-protobuf-lite</artifactId>
+            <version>${grpc.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-		</dependency>
+        </dependency>
         <dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-api</artifactId>
-			<version>${grpc.version}</version>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-api</artifactId>
+            <version>${grpc.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-		</dependency>
+        </dependency>
         <dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-core</artifactId>
-			<version>${grpc.version}</version>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-core</artifactId>
+            <version>${grpc.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-		</dependency>
+        </dependency>
         <dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-context</artifactId>
-			<version>${grpc.version}</version>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-context</artifactId>
+            <version>${grpc.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-		</dependency>
-		<dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-netty</artifactId>
-			<version>${grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-netty</artifactId>
+            <version>${grpc.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-		</dependency>
-		<dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-stub</artifactId>
-			<version>${grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-stub</artifactId>
+            <version>${grpc.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-		</dependency>
-		<dependency>
-			<groupId>io.perfmark</groupId>
-			<artifactId>perfmark-api</artifactId>
-			<version>0.23.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.perfmark</groupId>
+            <artifactId>perfmark-api</artifactId>
+            <version>0.25.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-		</dependency>
+        </dependency>
 
     </dependencies>
 
@@ -138,7 +136,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -146,28 +143,14 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>kivakit-merged-grpc-${kivakit.merged.version}</finalName>
-                            <minimizeJar>false</minimizeJar>
-                            <artifactSet>
-                                <includes>
-                                    <include>*:*</include>
-                                </includes>
-                            </artifactSet>
-                            <transformers>
-                                <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                 <manifestEntries>
-                                     <Automatic-Module-Name>kivakit.merged.grpc</Automatic-Module-Name>
-                                 </manifestEntries>
-                                </transformer>
-                            </transformers>
                             <relocations>
                                 <relocation>
-                                  <pattern>io.perfmark</pattern>
-                                  <shadedPattern>kivakit.merged.grpc.io.perfmark</shadedPattern>
+                                    <pattern>io.perfmark</pattern>
+                                    <shadedPattern>kivakit.merged.grpc.io.perfmark</shadedPattern>
                                 </relocation>
                                 <relocation>
-                                  <pattern>io.netty</pattern>
-                                  <shadedPattern>kivakit.merged.grpc.io.netty</shadedPattern>
+                                    <pattern>io.netty</pattern>
+                                    <shadedPattern>kivakit.merged.grpc.io.netty</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
