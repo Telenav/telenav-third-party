@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# telenav-third-party-protostuff 1.5.5 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-48-2x.png 2x"/>
+# telenav-third-party-protostuff 1.5.6 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-48-2x.png 2x"/>
 
 Merged JARs to prevent conflicts
 
@@ -20,14 +20,14 @@ Merged JARs to prevent conflicts
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.lexakai.org/1.5.5/lexakai/telenav-third-party/telenav-third-party-protostuff/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.lexakai.org/1.5.6/lexakai/telenav-third-party/telenav-third-party-protostuff/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.third.party</groupId>
         <artifactId>telenav-third-party-protostuff</artifactId>
-        <version>1.5.5</version>
+        <version>1.5.6</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -62,13 +62,13 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.third.party.protostuff*](https://www.lexakai.org/1.5.5/lexakai/telenav-third-party/telenav-third-party-protostuff/documentation/diagrams/com.telenav.third.party.protostuff.svg)
+[*com.telenav.third.party.protostuff*](https://www.lexakai.org/1.5.6/lexakai/telenav-third-party/telenav-third-party-protostuff/documentation/diagrams/com.telenav.third.party.protostuff.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*Unused*](https://www.lexakai.org/1.5.5/javadoc/telenav-third-party/telenav.third.party.protostuff/com/telenav/third/party/protostuff/Unused.html) |  |  
+| [*Unused*](https://www.lexakai.org/1.5.6/javadoc/telenav-third-party/telenav.third.party.protostuff/com/telenav/third/party/protostuff/Unused.html) |  |  
 
 [//]: # (start-user-text)
 

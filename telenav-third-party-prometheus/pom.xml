@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.telenav.third.party</groupId>
         <artifactId>telenav-third-party-parent</artifactId>
-        <version>1.5.5</version>
+        <version>1.5.6</version>
     </parent>
 
     <artifactId>telenav-third-party-prometheus</artifactId>
@@ -74,9 +74,16 @@
                             <relocations>
                                 <relocation>
                                     <pattern>io.prometheus</pattern>
-                                    <shadedPattern>telenav.third.party.${project.artifactId}</shadedPattern>
+                                    <shadedPattern>com.telenav.third.party.${project.artifactId}</shadedPattern>
                                 </relocation>
                             </relocations>
+                            <transformers>
+                                <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Automatic-Module-Name>telenav.third.party.prometheus</Automatic-Module-Name>
+                                    </manifestEntries>
+                                </transformer>
+                            </transformers>
                         </configuration>
                     </execution>
                 </executions>

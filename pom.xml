@@ -13,7 +13,7 @@
     <name>telenav-third-party-parent</name>
     <groupId>com.telenav.third.party</groupId>
     <artifactId>telenav-third-party-parent</artifactId>
-    <version>1.5.5</version>
+    <version>1.5.6</version>
 
     <packaging>pom</packaging>
 
@@ -215,39 +215,7 @@
                     <finalName>${project.artifactId}-${project.version}</finalName>
                     <minimizeJar>false</minimizeJar>
                     <createDependencyReducedPom>true</createDependencyReducedPom>
-                    <transformers>
-                        <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                            <manifestEntries>
-                                <Automatic-Module-Name>${autoAutoModuleName}</Automatic-Module-Name>
-                            </manifestEntries>
-                        </transformer>
-                    </transformers>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <!-- Sets a project-property (settable, but by default,
-                autoAutoModuleName which can then be used to generate a
-                manifest entry in the shade plugin or maven-jar-plugin.  In
-                particular, this plugin ensures that the result is a valid
-                Java identifier.
-
-                This allows us to have most of the configuration of the
-                shade plugin in this superpom, instead of near-duplicate
-                stanzas in every pom..
-                -->
-                <groupId>com.mastfrog</groupId>
-                <artifactId>automodule-inject</artifactId>
-                <configuration>
-                    <includeGroupId>false</includeGroupId>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>automodule-inject</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
 
             <!-- Dependencies -->

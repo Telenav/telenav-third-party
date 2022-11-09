@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.telenav.third.party</groupId>
         <artifactId>telenav-third-party-parent</artifactId>
-        <version>1.5.5</version>
+        <version>1.5.6</version>
     </parent>
 
     <artifactId>telenav-third-party-zookeeper</artifactId>
@@ -87,13 +87,20 @@
                             <relocations>
                                 <relocation>
                                   <pattern>org.apache.zookeeper</pattern>
-                                  <shadedPattern>telenav.third.party.${project.artifactId}</shadedPattern>
+                                  <shadedPattern>com.telenav.third.party.zookeeper</shadedPattern>
                                 </relocation>
                                 <relocation>
                                   <pattern>org.apache.jute</pattern>
-                                  <shadedPattern>telenav.third.party.${project.artifactId}</shadedPattern>
+                                  <shadedPattern>com.telenav.third.party.zookeeper.jute</shadedPattern>
                                 </relocation>
                             </relocations>
+                            <transformers>
+                                <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Automatic-Module-Name>telenav.third.party.zookeeper</Automatic-Module-Name>
+                                    </manifestEntries>
+                                </transformer>
+                            </transformers>
                         </configuration>
                     </execution>
                 </executions>
