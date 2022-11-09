@@ -13,7 +13,7 @@
     <name>telenav-third-party-parent</name>
     <groupId>com.telenav.third.party</groupId>
     <artifactId>telenav-third-party-parent</artifactId>
-    <version>1.5.4</version>
+    <version>1.5.5</version>
 
     <packaging>pom</packaging>
 
@@ -240,8 +240,6 @@
                 <artifactId>automodule-inject</artifactId>
                 <configuration>
                     <includeGroupId>false</includeGroupId>
-                    <!-- will give us the original names, such as third.party.gprc -->
-                    <prefix>third.party.</prefix>
                 </configuration>
                 <executions>
                     <execution>

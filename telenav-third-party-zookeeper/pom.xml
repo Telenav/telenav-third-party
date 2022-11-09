@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.telenav.third.party</groupId>
         <artifactId>telenav-third-party-parent</artifactId>
-        <version>1.5.4</version>
+        <version>1.5.5</version>
     </parent>
 
     <artifactId>telenav-third-party-zookeeper</artifactId>
