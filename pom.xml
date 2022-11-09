@@ -10,21 +10,18 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Merged Parent</name>
-
-    <groupId>com.telenav.thirdparty</groupId>
-    <artifactId>merged-parent</artifactId>
-    <version>1.5.3</version>
+    <name>telenav-third-party-parent</name>
+    <groupId>com.telenav.third.party</groupId>
+    <artifactId>telenav-third-party-parent</artifactId>
+    <version>1.5.4</version>
 
     <packaging>pom</packaging>
 
     <properties>
 
-        <automodule-inject.version>1.2</automodule-inject.version>
-        <kivakit.merged.version>1.5.3</kivakit.merged.version>
-        <java.version>11</java.version>
-        <maven.version>3.8.5</maven.version>
+        <java.version>17</java.version>
 
+        <maven.version>3.8.5</maven.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
@@ -32,22 +29,24 @@
         <maven-nexus-staging-plugin.version>1.6.13</maven-nexus-staging-plugin.version>
         <maven-shade-plugin.version>3.4.0</maven-shade-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+
+        <automodule-inject.version>1.2</automodule-inject.version>
         <netty.version>4.1.82.Final</netty.version>
 
     </properties>
 
     <modules>
 
-        <module>grpc</module>
-        <module>prometheus</module>
-        <module>protostuff</module>
-        <module>zookeeper</module>
+        <module>telenav-third-party-grpc</module>
+        <module>telenav-third-party-prometheus</module>
+        <module>telenav-third-party-protostuff</module>
+        <module>telenav-third-party-zookeeper</module>
 
     </modules>
 
     <!-- Project -->
 
-    <description>The merged-parent project contains JAR files that have been re-built for modular Java.</description>
+    <description>The third-party-parent project contains JAR files that have been re-built for modular Java.</description>
     <url>https://www.kivakit.org</url>
     <inceptionYear>2011</inceptionYear>
     <organization>
@@ -213,7 +212,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <finalName>${project.artifactId}-${kivakit.merged.version}</finalName>
+                    <finalName>${project.artifactId}-${project.version}</finalName>
                     <minimizeJar>false</minimizeJar>
                     <createDependencyReducedPom>true</createDependencyReducedPom>
                     <transformers>
@@ -241,8 +240,8 @@
                 <artifactId>automodule-inject</artifactId>
                 <configuration>
                     <includeGroupId>false</includeGroupId>
-                    <!-- will give us the original names, such as kivakit.merged.gprc -->
-                    <prefix>kivakit.merged.</prefix>
+                    <!-- will give us the original names, such as third.party.gprc -->
+                    <prefix>third.party.</prefix>
                 </configuration>
                 <executions>
                     <execution>
@@ -354,9 +353,9 @@
 
     <scm>
 
-        <connection>scm:git:https://github.com/Telenav/kivakit-merged.git</connection>
-        <developerConnection>scm:git:https://github.com/Telenav/kivakit-merged.git</developerConnection>
-        <url>https://github.com/Telenav/kivakit-merged.git</url>
+        <connection>scm:git:https://github.com/Telenav/telenav-third-party.git</connection>
+        <developerConnection>scm:git:https://github.com/Telenav/telenav-third-party.git</developerConnection>
+        <url>https://github.com/Telenav/telenav-third-party.git</url>
 
     </scm>
 
@@ -365,7 +364,7 @@
     <issueManagement>
 
         <system>GitHub</system>
-        <url>https://github.com/Telenav/kivakit-merged/issues</url>
+        <url>https://github.com/Telenav/telenav-third-party/issues</url>
 
     </issueManagement>
 
