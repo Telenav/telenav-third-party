@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven 3.8.6
-Built-By: jonathan
-Build-Jdk: 17.0.5
-Automatic-Module-Name: telenav.third.party.zookeeper
-

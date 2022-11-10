@@ -13,9 +13,10 @@
     <parent>
         <groupId>com.telenav.third.party</groupId>
         <artifactId>telenav-third-party-parent</artifactId>
-        <version>1.5.6</version>
+        <version>1.5.7</version>
     </parent>
 
+    <name>telenav-third-party-zookeeper</name>
     <artifactId>telenav-third-party-zookeeper</artifactId>
 
     <packaging>jar</packaging>
@@ -58,16 +59,25 @@
     <build>
         <plugins>
 
+            <!-- Create merged, relocated JAR to resolve conflicts and split packages -->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven.shade.plugin.version}</version>
                 <executions>
                     <execution>
+
                         <phase>package</phase>
+
                         <goals>
                             <goal>shade</goal>
                         </goals>
+
                         <configuration>
+
+                            <!-- Exclude slf4j logging to reduce conflicts -->
+
                             <artifactSet>
                                 <includes>
                                     <include>*:*</include>
@@ -76,6 +86,9 @@
                                     <exclude>org.slf4j:*</exclude>
                                 </excludes>
                             </artifactSet>
+
+                            <!-- Exclude META-INF -->
+
                             <filters>
                                 <filter>
                                     <artifact>*:*</artifact>
@@ -84,6 +97,9 @@
                                     </excludes>
                                 </filter>
                             </filters>
+
+                            <!-- Relocate packages to resolve conflicts -->
+
                             <relocations>
                                 <relocation>
                                   <pattern>org.apache.zookeeper</pattern>
@@ -94,6 +110,9 @@
                                   <shadedPattern>com.telenav.third.party.zookeeper.jute</shadedPattern>
                                 </relocation>
                             </relocations>
+
+                            <!-- Add module name -->
+
                             <transformers>
                                 <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
@@ -101,7 +120,9 @@
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
+
                         </configuration>
+
                     </execution>
                 </executions>
             </plugin>

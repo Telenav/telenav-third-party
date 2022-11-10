@@ -13,9 +13,10 @@
     <parent>
         <groupId>com.telenav.third.party</groupId>
         <artifactId>telenav-third-party-parent</artifactId>
-        <version>1.5.6</version>
+        <version>1.5.7</version>
     </parent>
 
+    <name>telenav-third-party-prometheus</name>
     <artifactId>telenav-third-party-prometheus</artifactId>
 
     <properties>
@@ -25,6 +26,8 @@
     </properties>
 
     <dependencies>
+
+        <!-- Metrics -->
 
         <dependency>
             <groupId>io.prometheus</groupId>
@@ -53,16 +56,25 @@
 
         <plugins>
 
+            <!-- Create merged, relocated JAR to resolve conflicts and split packages -->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven.shade.plugin.version}</version>
                 <executions>
                     <execution>
+
                         <phase>package</phase>
+
                         <goals>
                             <goal>shade</goal>
                         </goals>
+
                         <configuration>
+
+                            <!-- Exclude META-INF -->
+
                             <filters>
                                 <filter>
                                     <artifact>*:*</artifact>
@@ -71,12 +83,18 @@
                                     </excludes>
                                 </filter>
                             </filters>
+
+                            <!-- Relocate packages to resolve conflicts -->
+
                             <relocations>
                                 <relocation>
                                     <pattern>io.prometheus</pattern>
-                                    <shadedPattern>com.telenav.third.party.${project.artifactId}</shadedPattern>
+                                    <shadedPattern>com.telenav.third.party.prometheus</shadedPattern>
                                 </relocation>
                             </relocations>
+
+                            <!-- Add module name -->
+
                             <transformers>
                                 <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
@@ -84,7 +102,9 @@
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
+
                         </configuration>
+
                     </execution>
                 </executions>
             </plugin>

@@ -13,32 +13,39 @@
     <parent>
         <groupId>com.telenav.third.party</groupId>
         <artifactId>telenav-third-party-parent</artifactId>
-        <version>1.5.6</version>
+        <version>1.5.7</version>
     </parent>
 
+    <name>telenav-third-party-grpc</name>
     <artifactId>telenav-third-party-grpc</artifactId>
 
     <!--
 
        This project is here solely to build the grpc project into a single JAR to resolve the split package
-       problem between grpc-api and grpc-context. The JAR should be built and then manually installed in the
-       third-party project in the lib folder.
+       problem between grpc-api and grpc-context.
 
     -->
 
     <properties>
 
-        <grpc.version>1.50.0</grpc.version>
+        <netty.version>4.1.84.Final</netty.version>
+        <grpc.version>1.50.2</grpc.version>
+        <perfmark.version>0.25.0</perfmark.version>
 
     </properties>
 
     <dependencies>
+
+        <!-- Web -->
 
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
             <version>${netty.version}</version>
         </dependency>
+
+        <!-- Protocol -->
+
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
@@ -116,10 +123,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- Performance Tracing -->
+
         <dependency>
             <groupId>io.perfmark</groupId>
             <artifactId>perfmark-api</artifactId>
-            <version>0.25.0</version>
+            <version>${perfmark.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
@@ -134,26 +144,38 @@
 
         <plugins>
 
+            <!-- Create merged, relocated JAR to resolve conflicts and split packages -->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven.shade.plugin.version}</version>
                 <executions>
                     <execution>
+
                         <phase>package</phase>
+
                         <goals>
                             <goal>shade</goal>
                         </goals>
+
                         <configuration>
+
+                            <!-- Relocate packages to resolve conflicts -->
+
                             <relocations>
                                 <relocation>
                                     <pattern>io.perfmark</pattern>
-                                    <shadedPattern>com.telenav.third.party.grpc.io.perfmark</shadedPattern>
+                                    <shadedPattern>com.telenav.third.party.io.perfmark</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>io.netty</pattern>
-                                    <shadedPattern>com.telenav.third.party.grpc.io.netty</shadedPattern>
+                                    <shadedPattern>com.telenav.third.party.io.netty</shadedPattern>
                                 </relocation>
                             </relocations>
+
+                            <!-- Add automatic module name -->
+
                             <transformers>
                                 <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
@@ -161,7 +183,9 @@
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
+
                         </configuration>
+
                     </execution>
                 </executions>
             </plugin>

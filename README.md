@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# telenav-third-party 1.5.6 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-48-2x.png 2x"/>
+# telenav-third-party 1.5.7 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-48-2x.png 2x"/>
 
 Merged JARs to prevent conflicts
 
