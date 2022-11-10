@@ -18,6 +18,26 @@
 
     <packaging>pom</packaging>
 
+    <!-- Project -->
+
+    <description>The telenav-third-party project merges JAR files for use in modular Java.</description>
+    <url>https://www.kivakit.org</url>
+    <inceptionYear>2011</inceptionYear>
+    <organization>
+        <name>Telenav</name>
+        <url>https://www.telenav.com</url>
+    </organization>
+
+    <!-- Licensing -->
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <!-- Modules -->
 
     <modules>
@@ -65,28 +85,6 @@
         <maven.deploy.plugin.version>3.0.0</maven.deploy.plugin.version>
 
     </properties>
-
-    <!-- Project -->
-
-    <description>The telenav-third-party project merges JAR files for use in modular Java.</description>
-    <url>https://www.kivakit.org</url>
-    <inceptionYear>2011</inceptionYear>
-    <organization>
-        <name>Telenav</name>
-        <url>https://www.telenav.com</url>
-    </organization>
-
-    <!-- Licensing -->
-
-    <licenses>
-
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-
-    </licenses>
 
     <!-- Contributors -->
 
