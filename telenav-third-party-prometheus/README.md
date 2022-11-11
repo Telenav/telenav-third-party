@@ -4,7 +4,7 @@
 
 [//]: # (end-user-text)
 
-# telenav-third-party-prometheus 1.5.7 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-48-2x.png 2x"/>
+# telenav-third-party-prometheus 1.5.8 &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/gears-48.png" srcset="https://telenav.github.io/telenav-assets/images/icons/gears-48-2x.png 2x"/>
 
 Merged JARs to prevent conflicts
 
@@ -20,14 +20,14 @@ Merged JARs to prevent conflicts
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/dependencies-32.png" srcset="https://telenav.github.io/telenav-assets/images/icons/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://telenav.github.io/telenav-assets/docs/telenav-third-party/1.5.7/lexakai/telenav-third-party/telenav-third-party-prometheus/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://telenav.github.io/telenav-assets/docs/telenav-third-party/1.5.8/lexakai/telenav-third-party/telenav-third-party-prometheus/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.third.party</groupId>
         <artifactId>telenav-third-party-prometheus</artifactId>
-        <version>1.5.7</version>
+        <version>1.5.8</version>
     </dependency>
 
 <img src="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128.png" srcset="https://telenav.github.io/telenav-assets/images/separators/horizontal-line-128-2x.png 2x"/>
@@ -62,13 +62,13 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/box-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/box-24-2x.png 2x"/>
 
-[*com.telenav.third.party.prometheus*](https://telenav.github.io/telenav-assets/docs/telenav-third-party/1.5.7/lexakai/telenav-third-party/telenav-third-party-prometheus/documentation/diagrams/com.telenav.third.party.prometheus.svg)
+[*com.telenav.third.party.prometheus*](https://telenav.github.io/telenav-assets/docs/telenav-third-party/1.5.8/lexakai/telenav-third-party/telenav-third-party-prometheus/documentation/diagrams/com.telenav.third.party.prometheus.svg)
 
 ### Javadoc <a name="code-quality"></a> &nbsp;&nbsp; <img src="https://telenav.github.io/telenav-assets/images/icons/books-24.png" srcset="https://telenav.github.io/telenav-assets/images/icons/books-24-2x.png 2x"/>
 
 | Class | Documentation Sections  |
 |-------|-------------------------|
-| [*Unused*](https://telenav.github.io/telenav-assets/docs/telenav-third-party/1.5.7/javadoc/telenav-third-party/telenav-third-party-prometheus/com/telenav/third/party/prometheus/Unused.html) |  |  
+| [*Unused*](https://telenav.github.io/telenav-assets/docs/telenav-third-party/1.5.8/javadoc/telenav-third-party/telenav-third-party-prometheus/com/telenav/third/party/prometheus/Unused.html) |  |  
 
 [//]: # (start-user-text)
 

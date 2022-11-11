@@ -1,6 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 <!--                                                                                                                 -->
-<!--  © 2011-2021 Telenav, Inc.                                                                                      -->
+<!--  © 2011-2022 Telenav, Inc.                                                                                      -->
 <!--  Licensed under Apache License, Version 2.0                                                                     -->
 <!--                                                                                                                 -->
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -13,7 +15,7 @@
     <parent>
         <groupId>com.telenav.third.party</groupId>
         <artifactId>telenav-third-party-parent</artifactId>
-        <version>1.5.7</version>
+        <version>1.5.8</version>
     </parent>
 
     <name>telenav-third-party-prometheus</name>

@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 <!--                                                                                                                 -->
 <!--  © 2011-2021 Telenav, Inc.                                                                                      -->
@@ -13,7 +15,7 @@
     <parent>
         <groupId>com.telenav.third.party</groupId>
         <artifactId>telenav-third-party-parent</artifactId>
-        <version>1.5.7</version>
+        <version>1.5.8</version>
     </parent>
 
     <name>telenav-third-party-zookeeper</name>
