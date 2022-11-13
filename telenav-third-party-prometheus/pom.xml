@@ -17,7 +17,7 @@
     <parent>
         <groupId>com.telenav.third.party</groupId>
         <artifactId>telenav-third-party-parent</artifactId>
-        <version>1.5.8</version>
+        <version>1.5.9</version>
     </parent>
 
     <name>telenav-third-party-prometheus</name>
@@ -104,7 +104,7 @@
                             <!-- Add module name -->
 
                             <transformers>
-                                <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
                                         <Automatic-Module-Name>telenav.third.party.prometheus</Automatic-Module-Name>
                                     </manifestEntries>
