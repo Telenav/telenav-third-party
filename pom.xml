@@ -255,10 +255,11 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${maven.javadoc.plugin.version}</version>
+                        <inherited>false</inherited>
                         <configuration>
                             <show>protected</show>
                             <quiet>true</quiet>
-                            <source>${javadoc.source.version}</source>
+                            <source>${documentation.javadoc.source.version}</source>
                             <encoding>utf-8</encoding>
                             <sourcepath>src/main/java</sourcepath>
                             <failOnError>true</failOnError>
@@ -266,8 +267,7 @@
                             <doclint>none</doclint>
                             <nohelp>true</nohelp>
                             <additionalOptions>-notimestamp</additionalOptions>
-                            <reportOutputDirectory>target</reportOutputDirectory>
-                            <destDir>javadoc</destDir>
+                            <destDir>target/javadoc</destDir>
                             <sourceFileIncludes>
                                 <sourceFileInclude>**/*.java</sourceFileInclude>
                             </sourceFileIncludes>
@@ -287,6 +287,30 @@
                                     <goal>aggregate-no-fork</goal>
                                 </goals>
                             </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven.javadoc.plugin.version}</version>
+                        <configuration>
+                            <show>protected</show>
+                            <quiet>true</quiet>
+                            <source>${documentation.javadoc.source.version}</source>
+                            <encoding>utf-8</encoding>
+                            <sourcepath>src/main/java</sourcepath>
+                            <failOnError>true</failOnError>
+                            <detectJavaApiLink>false</detectJavaApiLink>
+                            <doclint>none</doclint>
+                            <nohelp>true</nohelp>
+                            <additionalOptions>-notimestamp</additionalOptions>
+                            <destDir>target/javadoc-jar</destDir>
+                            <sourceFileIncludes>
+                                <sourceFileInclude>**/*.java</sourceFileInclude>
+                            </sourceFileIncludes>
+                        </configuration>
+                        <executions>
                             <execution>
                                 <id>attach-javadoc-jar</id>
                                 <phase>prepare-package</phase>
@@ -309,7 +333,7 @@
                                 </goals>
                                 <configuration>
                                     <encoding>UTF-8</encoding>
-                                    <outputDirectory>${javadoc.documentation.folder}</outputDirectory>
+                                    <outputDirectory>${documentation.javadoc.folder}</outputDirectory>
                                     <resources>
                                         <resource>
                                             <directory>target/javadoc</directory>
@@ -326,6 +350,7 @@
                         <groupId>com.googlecode.maven-download-plugin</groupId>
                         <artifactId>download-maven-plugin</artifactId>
                         <version>1.6.8</version>
+                        <inherited>false</inherited>
                         <executions>
                             <execution>
                                 <id>install-jbpm</id>
@@ -346,6 +371,7 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>1.2.1</version>
+                        <inherited>false</inherited>
                         <executions>
                             <execution>
                                 <id>run-lexakai</id>
@@ -355,12 +381,12 @@
                                 </goals>
                                 <configuration>
                                     <executable>java</executable>
-                                    <workingDirectory>${lexakai.downloads.folder}</workingDirectory>
+                                    <workingDirectory>${documentation.lexakai.downloads.folder}</workingDirectory>
                                     <arguments>
                                         <argument>-jar</argument>
-                                        <argument>${lexakai.downloads.folder}/lexakai-application-${lexakai.version}.jar</argument>
+                                        <argument>${documentation.lexakai.downloads.folder}/lexakai-application-${lexakai.version}.jar</argument>
                                         <argument>-update-readme=true</argument>
-                                        <argument>-output-folder=${lexakai.documentation.folder}</argument>
+                                        <argument>-output-folder=${documentation.lexakai.folder}</argument>
                                         <!--suppress UnresolvedMavenProperty -->
                                         <argument>${env.TELENAV_WORKSPACE}/${repository.name}/</argument>
                                     </arguments>
