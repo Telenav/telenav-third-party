@@ -20,8 +20,7 @@ following command will build the projects and copy the result to a
 staging repository on OSSRH:
 
 ```
-mvn -P release clean deploy
-```
+mvn -P release clean javadoc:aggregate deploy```
 
 > *You must have the PGP key to sign the release or it will be rejected.*  
 > 
