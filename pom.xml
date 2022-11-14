@@ -74,6 +74,7 @@
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
         <maven.javadoc.plugin.version>3.4.1</maven.javadoc.plugin.version>
         <maven.resources.plugin.version>3.3.0</maven.resources.plugin.version>
+        <maven.cactus.plugin.version>1.5.49</maven.cactus.plugin.version>
 
         <!-- Documentation -->
 
@@ -391,6 +392,16 @@
                             <tolerateVersionInconsistenciesIn>lexakai</tolerateVersionInconsistenciesIn>
                         </configuration>
                         <executions>
+                            <execution>
+                                <id>replace-versions</id>
+                                <goals>
+                                    <goal>replace</goal>
+                                </goals>
+                                <configuration>
+                                    <newVersion>${project.version}</newVersion>
+                                    <newBranchName>${project.version}</newBranchName>
+                                </configuration>
+                            </execution>
                             <execution>
                                 <id>generate-codeflowers</id>
                                 <goals>
