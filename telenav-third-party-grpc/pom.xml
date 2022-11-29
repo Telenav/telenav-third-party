@@ -26,7 +26,7 @@
     <properties>
 
         <netty.version>4.1.84.Final</netty.version>
-        <grpc.version>1.50.2</grpc.version>
+        <grpc.version>1.51.0</grpc.version>
         <perfmark.version>0.25.0</perfmark.version>
 
     </properties>
@@ -174,7 +174,7 @@
                             <!-- Add automatic module name -->
 
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
                                         <Automatic-Module-Name>telenav.third.party.grpc</Automatic-Module-Name>
                                     </manifestEntries>
